@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 app.use(
   cors({
     origin: [
-      "https://voice-assistant-wjca.onrender.com", // Your frontend URL
+      "https://voice-assistant-wjca.onrender.com/", // Your frontend URL
       "http://localhost:5173", // Local development
     ],
     methods: ["GET", "POST"],
