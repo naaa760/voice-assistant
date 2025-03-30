@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { FaMicrophone, FaStop } from "react-icons/fa";
+import axios from "axios";
 
 const Dashboard = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -13,7 +14,6 @@ const Dashboard = () => {
   const conversationEndRef = useRef(null);
 
   useEffect(() => {
-    // Scroll to the bottom of the conversation when new messages are added
     if (conversationEndRef.current) {
       conversationEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -48,17 +48,17 @@ const Dashboard = () => {
       setIsRecording(false);
       setStatus("Processing...");
       setIsProcessing(true);
+
+      mediaRecorderRef.current.stream
+        .getTracks()
+        .forEach((track) => track.stop());
     }
   };
 
   const handleAudioData = async () => {
-    // Option 2: Keep the variable but use it (for future implementation)
     const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
-
-    // Suppress the linter warning by using the variable in some way
     console.log("Audio blob created:", audioBlob.size);
 
-    // Add user message to conversation (placeholder until we get the transcription)
     const userMessageId = Date.now();
     setConversation((prev) => [
       ...prev,
@@ -70,8 +70,8 @@ const Dashboard = () => {
     ]);
 
     try {
-      // Convert audio to text using speech-to-text service
-      const transcription = await convertSpeechToText();
+      // Convert audio to text using Deepgram
+      const transcription = await convertSpeechToText(audioBlob);
 
       // Update the user message with the transcription
       setConversation((prev) =>
@@ -80,8 +80,8 @@ const Dashboard = () => {
         )
       );
 
-      // Get AI response
-      const aiResponse = await getAIResponse();
+      // Get AI response from Groq
+      const aiResponse = await getAIResponse(transcription);
 
       // Add AI response to conversation
       setConversation((prev) => [
@@ -117,43 +117,89 @@ const Dashboard = () => {
     }
   };
 
-  // Placeholder function for speech-to-text conversion
-  const convertSpeechToText = async () => {
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+  // Real implementation of speech-to-text using Deepgram
+  const convertSpeechToText = async (audioBlob) => {
+    try {
+      const formData = new FormData();
+      formData.append("audio", audioBlob, "recording.webm");
 
-    // This is where you would make the actual API call to Deepgram
-    // For now, return a placeholder message
-    return "This is a simulated transcription of your voice input.";
+      // Send the audio to our backend proxy
+      const response = await axios.post("/api/speech-to-text", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        timeout: 10000,
+      });
+
+      if (response.data && response.data.transcript) {
+        return response.data.transcript;
+      } else {
+        throw new Error("Invalid response format");
+      }
+    } catch (error) {
+      console.error("Error in speech-to-text conversion:", error);
+      if (error.response) {
+        console.error("Server error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      }
+      throw new Error(
+        "Failed to convert speech to text. " + (error.message || "")
+      );
+    }
   };
 
-  // Placeholder function for getting AI response
-  const getAIResponse = async () => {
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+  // Real implementation of AI response using Groq
+  const getAIResponse = async (text) => {
+    try {
+      const response = await axios.post("/api/chat", {
+        message: text,
+      });
 
-    // This is where you would make the actual API call to Groq
-    // For now, return a placeholder response
-    return "This is a simulated AI response to your query. In a real implementation, this would come from the Groq API based on your voice input.";
+      return response.data.response;
+    } catch (error) {
+      console.error("Error getting AI response:", error);
+      throw new Error("Failed to get AI response");
+    }
   };
 
-  // Placeholder function for text-to-speech conversion
+  // Enhanced text-to-speech conversion
   const convertTextToSpeech = async (text) => {
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      // Get audio from TTS API
+      const response = await axios.post(
+        "/api/text-to-speech",
+        {
+          text: text,
+        },
+        {
+          responseType: "blob",
+        }
+      );
 
-    // This is where you would make the actual API call to a TTS service
-    // and play the resulting audio
+      const audioBlob = new Blob([response.data], { type: "audio/mpeg" });
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
 
-    // For now, we'll use the browser's built-in speech synthesis
-    if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      window.speechSynthesis.speak(utterance);
+      await audio.play();
+
+      // Clean up the URL object after playing
+      audio.onended = () => {
+        URL.revokeObjectURL(audioUrl);
+      };
+    } catch (error) {
+      console.error("Error in text-to-speech conversion:", error);
+
+      // Fallback to browser's built-in speech synthesis
+      if ("speechSynthesis" in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(utterance);
+      }
     }
   };
 
   const toggleRecording = () => {
-    if (isProcessing) return; // Prevent starting new recording while processing
+    if (isProcessing) return;
 
     if (isRecording) {
       stopRecording();
