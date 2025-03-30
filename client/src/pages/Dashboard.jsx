@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { FaMicrophone, FaStop } from "react-icons/fa";
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL || "";
+
 const Dashboard = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [status, setStatus] = useState("Ready");
@@ -124,12 +126,16 @@ const Dashboard = () => {
       formData.append("audio", audioBlob, "recording.webm");
 
       // Send the audio to our backend proxy
-      const response = await axios.post("/api/speech-to-text", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        timeout: 10000,
-      });
+      const response = await axios.post(
+        `${API_URL}/api/speech-to-text`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          timeout: 10000,
+        }
+      );
 
       if (response.data && response.data.transcript) {
         return response.data.transcript;
