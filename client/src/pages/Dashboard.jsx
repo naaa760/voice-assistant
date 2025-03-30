@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { FaMicrophone, FaStop } from "react-icons/fa";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "";
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://voice-assistant-wjca.onrender.com/";
 
 const Dashboard = () => {
   const [isRecording, setIsRecording] = useState(false);
