@@ -2,10 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
 const axios = require("axios");
-const path = require("path");
 const dotenv = require("dotenv");
 const { Deepgram } = require("@deepgram/sdk");
-const fs = require("fs");
 const { Readable } = require("stream");
 
 // Load environment variables
@@ -18,8 +16,8 @@ const PORT = process.env.PORT || 5000;
 app.use(
   cors({
     origin: [
-      "https://voice-assistant-wjca.onrender.com", // Your Vercel frontend URL
-      "http://localhost:5173", // Local development URL
+      "https://voice-assistant-wjca.onrender.com", // Your frontend URL
+      "http://localhost:5173", // Local development
     ],
     methods: ["GET", "POST"],
     credentials: true,
@@ -35,6 +33,7 @@ const upload = multer({ storage });
 const deepgram = new Deepgram(process.env.DEEPGRAM_API_KEY);
 
 // API Routes
+
 // 1. Speech-to-Text endpoint
 app.post("/api/speech-to-text", upload.single("audio"), async (req, res) => {
   try {
@@ -121,8 +120,6 @@ app.post("/api/text-to-speech", async (req, res) => {
       return res.status(400).json({ error: "No text provided" });
     }
 
-    // Using ElevenLabs API for high-quality TTS
-    // You can replace this with any TTS API of your choice
     const response = await axios({
       method: "post",
       url: "https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM",
@@ -151,14 +148,10 @@ app.post("/api/text-to-speech", async (req, res) => {
   }
 });
 
-// Serve static files in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/dist")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-  });
-}
+// Root endpoint
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 // Start the server
 app.listen(PORT, () => {
