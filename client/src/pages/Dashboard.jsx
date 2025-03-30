@@ -125,7 +125,7 @@ const Dashboard = () => {
       const formData = new FormData();
       formData.append("audio", audioBlob, "recording.webm");
 
-      // Send the audio to our backend proxy
+      // Use the API_URL from environment variables
       const response = await axios.post(
         `${API_URL}/api/speech-to-text`,
         formData,

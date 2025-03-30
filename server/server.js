@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 app.use(
   cors({
     origin: [
-      "https://voice-assistant-wjca.onrender.com/", // Your frontend URL
+      "https://voice-assistant-i3q2.vercel.app", // Remove trailing slash and update to your actual Vercel URL
       "http://localhost:5173", // Local development
     ],
     methods: ["GET", "POST"],
