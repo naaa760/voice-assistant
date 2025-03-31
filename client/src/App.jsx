@@ -279,6 +279,25 @@ function App() {
         </div>
       </section>
 
+      {/* Second Carousel Section */}
+      <section className="carousel-section second-carousel">
+        <div className="carousel-header">
+          <h2>See our platform in action</h2>
+          <p>
+            Explore how our AI voice assistant transforms business communication
+          </p>
+        </div>
+        <Carousel
+          images={[
+            "/img1.png",
+            "/img2.png",
+            "/img3.png",
+            "/img4.png",
+            "/img5.png",
+          ]}
+        />
+      </section>
+
       {/* After Professionals Section */}
       <section className="test-platform-section">
         <div className="platform-container">
