@@ -48,6 +48,7 @@ a {
 
 /* App Container */
 .app-container {
+  padding-top: 5rem;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -55,31 +56,29 @@ a {
   overflow-x: hidden;
 }
 
-/* Navbar Styles - Updated for full transparency */
+/* Navbar Styles - Updated for fixed position */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  background-color: transparent; /* Fully transparent background */
-  position: sticky;
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly visible background */
+  backdrop-filter: blur(8px); /* Blur effect for better readability */
+  position: fixed; /* Change from sticky to fixed */
   top: 1rem;
+  left: 0;
+  right: 0;
   z-index: 1000;
   border-radius: 50px; /* Oval corners */
   margin: 1rem 2rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .navbar:hover {
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.1
-  ); /* Very subtle background on hover */
-  backdrop-filter: blur(4px); /* Light blur effect only on hover */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .navbar-logo {
@@ -162,7 +161,7 @@ a {
 .badge-container {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 4rem; /* Increased to account for fixed navbar */
 }
 
 .badge {
