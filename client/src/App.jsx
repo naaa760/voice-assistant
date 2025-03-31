@@ -1,5 +1,19 @@
 import { Link } from "react-router-dom";
-import { FaMicrophone, FaRobot, FaBolt, FaGlobe } from "react-icons/fa";
+import {
+  FaMicrophone,
+  FaRobot,
+  FaBolt,
+  FaGlobe,
+  FaUserTie,
+  FaChartBar,
+  FaSearch,
+  FaCode,
+  FaBullhorn,
+  FaHeadset,
+  FaClock,
+  FaFileAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 import { useEffect, useRef } from "react";
 import Carousel from "./components/Carousel";
 
@@ -137,54 +151,130 @@ function App() {
 
         <div className="stats-container">
           <div className="stat-card">
+            <img
+              src="/li2.png"
+              alt="Cost Reduction"
+              className="stat-card-image"
+            />
+            <div className="stat-card-content">
+              <div className="stat-logo">
+                <FaMicrophone />
+              </div>
+              <div className="stat-value">↓$10K</div>
+              <div className="stat-label">PER VIDEO</div>
+              <p className="stat-description">
+                Our AI voice technology reduced video production costs by
+                $10,000 per training video compared to traditional recording
+                methods.
+              </p>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <img
+              src="/li2.png"
+              alt="Time Savings"
+              className="stat-card-image"
+            />
+            <div className="stat-card-content">
+              <div className="stat-logo">
+                <FaBolt />
+              </div>
+              <div className="stat-value">
+                <span className="stat-arrow up">↑</span>90%
+              </div>
+              <div className="stat-label">TIME SAVINGS</div>
+              <p className="stat-description">
+                Cut 90% off video generation time – from days to hours, compared
+                to traditional video creation methods.
+              </p>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <img
+              src="/li2.png"
+              alt="Engagement Increase"
+              className="stat-card-image"
+            />
+            <div className="stat-card-content">
+              <div className="stat-logo">
+                <FaRobot />
+              </div>
+              <div className="stat-value">
+                <span className="stat-arrow up">↑</span>30%
+              </div>
+              <div className="stat-label">ENGAGEMENT INCREASE</div>
+              <p className="stat-description">
+                Experienced over 30% increase in engagement with AI-powered
+                voice content compared to text-based learning modules.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Professionals Section - styled like Stats Section */}
+      <section className="professionals-section stats-style">
+        <div className="stats-header">
+          <h2>Built for professionals.</h2>
+        </div>
+
+        <div className="stats-container">
+          <div className="stat-card">
             <div className="stat-logo">
-              <FaMicrophone />
+              <FaUserTie />
             </div>
-            <div className="stat-value">
-              <span className="stat-arrow down">↓</span>$10K
+            <h3>Entrepreneur</h3>
+            <div className="feature-content">
+              <h4>Market intelligence navigator</h4>
+              <p className="stat-description">
+                Executes competitor analysis and tracks market trends to
+                generate actionable reports.
+              </p>
             </div>
-            <div className="stat-label">PER VIDEO</div>
-            <p className="stat-description">
-              Our AI voice technology reduced video production costs by $10,000
-              per training video compared to traditional recording methods.
-            </p>
-            <Link to="/case-study" className="stat-link">
-              Read case study <span className="arrow">→</span>
-            </Link>
           </div>
 
           <div className="stat-card">
             <div className="stat-logo">
-              <FaBolt />
+              <FaChartBar />
             </div>
-            <div className="stat-value">
-              <span className="stat-arrow up">↑</span>90%
+            <h3>Analyst</h3>
+            <div className="feature-content">
+              <h4>Strategic thinking companion</h4>
+              <p className="stat-description">
+                Analyzes business challenges and identifies key information to
+                generate strategic solutions.
+              </p>
             </div>
-            <div className="stat-label">TIME SAVINGS</div>
-            <p className="stat-description">
-              Cut 90% off video generation time – from days to hours, compared
-              to traditional video creation methods.
-            </p>
-            <Link to="/case-study" className="stat-link">
-              Read case study <span className="arrow">→</span>
-            </Link>
           </div>
 
           <div className="stat-card">
             <div className="stat-logo">
-              <FaRobot />
+              <FaFileAlt />
             </div>
-            <div className="stat-value">
-              <span className="stat-arrow up">↑</span>30%
+            <h3>Researcher</h3>
+            <div className="feature-content">
+              <h4>Smart document analyzer</h4>
+              <p className="stat-description">
+                Extracts key points from contracts and reports while
+                highlighting critical details.
+              </p>
             </div>
-            <div className="stat-label">ENGAGEMENT INCREASE</div>
-            <p className="stat-description">
-              Experienced over 30% increase in engagement with AI-powered voice
-              content compared to text-based learning modules.
-            </p>
-            <Link to="/case-study" className="stat-link">
-              Read case study <span className="arrow">→</span>
-            </Link>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-logo">
+              <FaEnvelope />
+            </div>
+            <h3>Developer</h3>
+            <div className="feature-content">
+              <h4>Context-aware email assistant</h4>
+              <p className="stat-description">
+                Extracts email essentials and generates contextual response
+                suggestions.
+              </p>
+            </div>
           </div>
         </div>
       </section>

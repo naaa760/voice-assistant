@@ -1084,11 +1084,10 @@ footer {
 
 /* Stats Section with More Visible Background Image */
 .stats-section {
-  padding: 5rem 1rem;
+  padding: 5rem 5%;
   position: relative;
   background: url("/ki.jpg") center center/cover no-repeat;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 0;
 }
 
 /* Reduced opacity overlay for better image visibility */
@@ -1133,25 +1132,26 @@ footer {
 }
 
 .stat-card {
-  background: linear-gradient(
-    135deg,
-    rgba(248, 249, 250, 0.9) 0%,
-    rgba(240, 244, 255, 0.9) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12),
-    0 5px 10px rgba(170, 142, 85, 0.08);
-  border-radius: 16px;
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 280px;
-  transition: all 0.4s ease;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  gap: 1.25rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  max-width: 360px;
+}
+
+/* Style the card content */
+.stat-card-content {
+  flex: 1;
+}
+
+/* Style the card image */
+.stat-card-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 12px;
 }
 
 /* Enhanced silver light effect on the top */
@@ -1231,10 +1231,9 @@ footer {
 
 /* Enhanced logo with silver gradient */
 .stat-logo {
-  font-size: 1.5rem;
-  margin-bottom: 1.2rem;
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1271,9 +1270,9 @@ footer {
 /* Enhanced value with silver-gold gradient text */
 .stat-value {
   font-family: "Manrope", sans-serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1327,9 +1326,15 @@ footer {
 }
 
 /* Smaller description text */
+.stat-label {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
 .stat-description {
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
 }
 
 /* Responsive adjustments for stats section */
@@ -1340,6 +1345,11 @@ footer {
 
   .stats-container {
     gap: 1.5rem;
+  }
+
+  .stat-card-image {
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -1357,8 +1367,14 @@ footer {
   }
 
   .stat-card {
-    max-width: 100%;
-    padding: 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .stat-card-image {
+    width: 80px;
+    height: 80px;
   }
 
   .stat-value {
@@ -1383,5 +1399,209 @@ footer {
     width: 50px;
     height: 50px;
     font-size: 1.5rem;
+  }
+}
+
+/* Update the professionals section styles to match stats section */
+.professionals-section.stats-style {
+  padding: 5rem 5%;
+  position: relative;
+  background: url("/bl.jpg") center center/cover no-repeat;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.professionals-section.stats-style::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(248, 249, 250, 0.3);
+  backdrop-filter: blur(0px);
+  z-index: -1;
+}
+
+/* Match the stats container style */
+.professionals-section .stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Match the stats header style */
+.professionals-section .stats-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  padding: 0 1rem;
+}
+
+.professionals-section .stats-header h2 {
+  font-family: "Manrope", sans-serif;
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Update the card styles to match stats */
+.professionals-section .stat-card {
+  background: url("/fu.jpg") center/cover no-repeat;
+  border-radius: 20px;
+  padding: 1.75rem;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+}
+
+/* Add gradient overlay and line pattern */
+.professionals-section .stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* Add line pattern overlay */
+.professionals-section .stat-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(76, 175, 80, 0.1) 0%,
+    rgba(255, 215, 0, 0.1) 50%,
+    rgba(255, 107, 44, 0.1) 100%
+  );
+  mask-image: repeating-linear-gradient(
+    0deg,
+    #000,
+    #000 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  -webkit-mask-image: repeating-linear-gradient(
+    0deg,
+    #000,
+    #000 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: 2;
+}
+
+/* Style the content */
+.professionals-section .stat-logo {
+  position: relative;
+  z-index: 3;
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.professionals-section .stat-logo svg {
+  color: #6366f1;
+  font-size: 1.2rem;
+}
+
+.professionals-section h3 {
+  position: relative;
+  z-index: 3;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.professionals-section .feature-content {
+  position: relative;
+  z-index: 3;
+}
+
+.professionals-section .feature-content h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.professionals-section .stat-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #4a5568;
+}
+
+/* Hover effect */
+.professionals-section .stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Grid layout */
+.professionals-section .stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .professionals-section .stats-container {
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .professionals-section h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .professionals-section .stats-container {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .professionals-section .stat-card {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .professionals-section h3 {
+    font-size: 1.3rem;
+  }
+
+  .professionals-section .feature-content h4 {
+    font-size: 0.95rem;
   }
 }
