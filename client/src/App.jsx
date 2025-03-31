@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom";
 import { FaMicrophone, FaRobot, FaBolt, FaGlobe } from "react-icons/fa";
 import { useEffect, useRef } from "react";
+import Carousel from "./components/Carousel";
 
 function App() {
   const videoRef = useRef(null);
+
+  // Update the image paths to match your logo images
+  const carouselImages = [
+    "/img.png",
+    "/img1.png",
+    "/img2.png",
+    "/img3.png",
+    "/img4.png",
+    "/img5.png",
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -111,6 +122,11 @@ function App() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Update the carousel section */}
+      <section className="carousel-section">
+        <Carousel images={carouselImages} />
       </section>
 
       {/* Stats Section */}

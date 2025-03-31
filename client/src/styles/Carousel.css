@@ -1,0 +1,138 @@
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 1rem 0;
+  background-color: transparent;
+  padding: 10px 0;
+}
+
+.train-track {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.train {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  animation: logoScroll 25s linear infinite;
+}
+
+.train-car {
+  flex: 0 0 auto;
+  height: 100%;
+  position: relative;
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.train-car img {
+  max-width: 120px;
+  max-height: 45px;
+  object-fit: contain;
+  filter: brightness(0.9) grayscale(0.1);
+  transition: filter 0.3s ease;
+}
+
+.train-car img:hover {
+  filter: brightness(1) grayscale(0);
+}
+
+.train-smoke {
+  position: absolute;
+  left: 10%;
+  bottom: 30%;
+  z-index: 10;
+}
+
+.smoke-puff {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  position: absolute;
+  animation: smoke 3s infinite;
+}
+
+.smoke-puff:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.smoke-puff:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.smoke-puff:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes smoke {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50px) scale(2);
+    opacity: 0;
+  }
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: #666;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.indicator.active {
+  background-color: #fff;
+}
+
+@keyframes logoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Add train animation */
+@keyframes trainMove {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .train-car {
+    margin: 0 10px;
+  }
+
+  .train-car img {
+    max-width: 100px;
+    max-height: 40px;
+  }
+}
