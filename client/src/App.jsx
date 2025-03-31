@@ -278,6 +278,83 @@ function App() {
           </div>
         </div>
       </section>
+
+      {/* After Professionals Section */}
+      <section className="test-platform-section">
+        <div className="platform-container">
+          <div className="platform-content">
+            <h2>Intelligent Test Generation Platform</h2>
+
+            <div className="platform-highlight">
+              <p>
+                You're developing an AI solution that automatically generates
+                comprehensive test coverage.
+              </p>
+            </div>
+
+            <div className="platform-features">
+              <div className="feature-item">
+                <span className="feature-icon">↳</span>
+                <div className="feature-text">
+                  <h3>Language-Agnostic Environments</h3>
+                  <p>Deploy your AI across various programming languages.</p>
+                </div>
+              </div>
+
+              <div className="feature-item">
+                <span className="feature-icon">↳</span>
+                <div className="feature-text">
+                  <h3>Development Tool Integrations</h3>
+                  <p>
+                    Leverage IDE and language server connections for precise
+                    code analysis.
+                  </p>
+                </div>
+              </div>
+
+              <div className="feature-item">
+                <span className="feature-icon">↳</span>
+                <div className="feature-text">
+                  <h3>Test Coverage Evaluations</h3>
+                  <p>
+                    Quantify the comprehensiveness and effectiveness of your
+                    AI-generated tests.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="platform-graph">
+            <div className="graph-header">
+              <h3>Coverage Over Time</h3>
+              <span className="coverage-percentage">89%</span>
+            </div>
+            <div className="graph-content">
+              {/* Graph line visualization would go here */}
+            </div>
+            <div className="graph-runs">
+              <span className="run-label">Run #1</span>
+              <span className="run-label">Run #2</span>
+              <span className="run-label">Run #3</span>
+              <span className="run-label">Run #4</span>
+              <span className="run-label">Run #5</span>
+              <span className="run-label">Run #6</span>
+            </div>
+            <div className="graph-bars">
+              <div className="bar-group">
+                <div className="bar-value">368</div>
+              </div>
+              <div className="bar-group">
+                <div className="bar-value">322</div>
+              </div>
+              <div className="bar-group">
+                <div className="bar-value">46</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
