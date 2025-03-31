@@ -16,11 +16,13 @@ const PORT = process.env.PORT || 5000;
 app.use(
   cors({
     origin: [
-      "https://voice-assistant-i3q2.vercel.app", // Remove trailing slash and update to your actual Vercel URL
-      "http://localhost:5173", // Local development
+      "https://voice-assistant-i3q2.vercel.app",
+      "http://localhost:5173",
+      // Add any other domains that need access
     ],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "OPTIONS"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
