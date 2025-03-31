@@ -56,14 +56,13 @@ a {
   overflow-x: hidden;
 }
 
-/* Navbar Styles - Updated for fixed position */
+/* Navbar Styles - Updated with fl.jpg background */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  background-color: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
+  background: url("/fl.jpg") center center/cover no-repeat;
   position: fixed;
   top: 1rem;
   left: 0;
@@ -76,11 +75,34 @@ a {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.navbar:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+/* Add an overlay to ensure text readability in navbar */
+.navbar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  border-radius: 50px;
+  z-index: -1;
 }
 
+.navbar:hover::before {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Update navbar links for better visibility */
+.navbar-links a {
+  color: var(--text-dark);
+  font-weight: 600;
+  transition: var(--transition);
+  position: relative;
+  z-index: 2; /* Ensure links are above the overlay */
+}
+
+/* Update navbar logo for better visibility */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -88,6 +110,8 @@ a {
   font-size: 1.5rem;
   color: var(--primary-color);
   padding: 0 1rem;
+  position: relative;
+  z-index: 2; /* Ensure logo is above the overlay */
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
@@ -101,13 +125,6 @@ a {
   align-items: center;
   gap: 2rem;
   padding: 0 1rem;
-}
-
-.navbar-links a {
-  color: var(--text-dark);
-  font-weight: 600;
-  transition: var(--transition);
-  position: relative;
 }
 
 .navbar-links a:hover {
@@ -963,5 +980,408 @@ footer {
 @media (max-width: 768px) {
   .hero-image {
     max-width: 100%;
+  }
+}
+
+/* Enhanced Video Card Section with Beautiful Shadow */
+.video-card-section {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 1rem;
+  margin-top: 3rem;
+}
+
+.video-card {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  height: 600px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 15px 35px rgba(0, 0, 0, 0.1),
+    0 50px 100px rgba(67, 97, 238, 0.15);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform: translateY(0);
+}
+
+/* Add faded bottom edge */
+.video-card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--background-color));
+  z-index: 3;
+  pointer-events: none;
+}
+
+.card-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  mask-image: linear-gradient(to bottom, black 0%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 85%,
+    transparent 100%
+  );
+}
+
+/* Remove content overlay completely */
+.card-content {
+  display: none;
+}
+
+/* Responsive adjustments for video card */
+@media (max-width: 992px) {
+  .video-card {
+    height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-card {
+    height: 450px;
+    /* Adjust shadow for smaller screens */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1),
+      0 15px 30px rgba(67, 97, 238, 0.15);
+  }
+
+  .video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1),
+      0 20px 40px rgba(67, 97, 238, 0.2);
+  }
+
+  .video-card::before {
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-card {
+    height: 400px;
+    /* Simpler shadow for mobile */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1),
+      0 10px 25px rgba(67, 97, 238, 0.15);
+  }
+
+  .video-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .video-card::before {
+    height: 80px;
+  }
+}
+
+/* Stats Section with More Visible Background Image */
+.stats-section {
+  padding: 5rem 1rem;
+  position: relative;
+  background: url("/ki.jpg") center center/cover no-repeat;
+  position: relative;
+  z-index: 1;
+}
+
+/* Reduced opacity overlay for better image visibility */
+.stats-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(248, 249, 250, 0.3); /* Reduced opacity from 0.65 to 0.3 */
+  backdrop-filter: blur(0px); /* Removed blur completely */
+  z-index: -1;
+}
+
+.stats-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.stats-header h2 {
+  font-family: "Manrope", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
+  color: #0a0f1c; /* Darker text for better contrast */
+  font-weight: 800; /* Bolder text for better visibility */
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 249, 250, 0.9) 0%,
+    rgba(240, 244, 255, 0.9) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12),
+    0 5px 10px rgba(170, 142, 85, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 280px;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Enhanced silver light effect on the top */
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(170, 142, 85, 0.4) 20%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(170, 142, 85, 0.4) 80%,
+    transparent 100%
+  );
+  z-index: 2;
+  animation: shimmer 2s infinite linear;
+}
+
+/* Silver shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+/* Enhanced silver gradient overlay */
+.stat-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at top right,
+      rgba(170, 142, 85, 0.15) 0%,
+      transparent 60%
+    ),
+    linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(170, 142, 85, 0.05) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+  pointer-events: none;
+}
+
+/* Enhanced silver effect on hover */
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(170, 142, 85, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, #f0f4ff 0%, #f8f9fa 100%);
+}
+
+/* Add silver edge glow on hover */
+.stat-card:hover::before {
+  height: 5px;
+  opacity: 0.9;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(170, 142, 85, 0.5) 20%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(170, 142, 85, 0.5) 80%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Enhanced logo with silver gradient */
+.stat-logo {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(67, 97, 238, 0.1) 0%,
+    rgba(170, 142, 85, 0.15) 100%
+  );
+  border-radius: 50%;
+  position: relative;
+  color: var(--primary-color);
+}
+
+/* Enhanced silver ring around logo */
+.stat-logo::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(170, 142, 85, 0.6) 50%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  z-index: -1;
+  opacity: 0.7;
+  box-shadow: 0 0 10px rgba(170, 142, 85, 0.3);
+}
+
+/* Enhanced value with silver-gold gradient text */
+.stat-value {
+  font-family: "Manrope", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color) 0%, #aa8e55 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Add subtle silver glow to value */
+.stat-value::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(170, 142, 85, 0.3) 50%,
+    transparent 100%
+  );
+}
+
+/* Enhanced silver effect for link */
+.stat-link {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+  background-color: rgba(67, 97, 238, 0.05);
+  border: 1px solid rgba(170, 142, 85, 0.1);
+}
+
+.stat-link:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(67, 97, 238, 0.1) 0%,
+    rgba(170, 142, 85, 0.15) 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(170, 142, 85, 0.2);
+}
+
+/* Smaller description text */
+.stat-description {
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive adjustments for stats section */
+@media (max-width: 992px) {
+  .stats-header h2 {
+    font-size: 2.4rem;
+  }
+
+  .stats-container {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-section {
+    padding: 4rem 1rem;
+  }
+
+  .stats-header h2 {
+    font-size: 2rem;
+  }
+
+  .stats-header {
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .stat-value {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-section {
+    padding: 3rem 1rem;
+  }
+
+  .stats-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+  }
+
+  .stat-logo {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
   }
 }

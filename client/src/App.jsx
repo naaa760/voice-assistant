@@ -1,7 +1,32 @@
 import { Link } from "react-router-dom";
 import { FaMicrophone, FaRobot, FaBolt, FaGlobe } from "react-icons/fa";
+import { useEffect, useRef } from "react";
 
 function App() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const videoCard = document.querySelector(".video-card");
+
+      if (videoCard) {
+        const videoCardTop =
+          videoCard.getBoundingClientRect().top + window.scrollY;
+
+        // Start playing video when it comes into view
+        if (scrollPosition > videoCardTop - window.innerHeight / 2) {
+          if (videoRef.current && videoRef.current.paused) {
+            videoRef.current.play();
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="app-container">
       <div className="background-image"></div>
@@ -57,102 +82,96 @@ function App() {
         </div>
       </header>
 
-      <section id="features" className="features-section">
-        <h2>Powerful Voice AI at Your Fingertips</h2>
-        <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-icon">
+      {/* Video Card Section */}
+      <section className="video-card-section">
+        <div className="video-card">
+          <video
+            ref={videoRef}
+            src="/vid.mp4"
+            muted
+            loop
+            playsInline
+            className="card-video"
+          ></video>
+          <div className="card-content">
+            <h2>Turn text to video, in minutes.</h2>
+            <p>
+              Create studio-quality videos with AI avatars and voiceovers in
+              140+ languages. It's as easy as making a slide deck.
+            </p>
+            <Link to="/dashboard" className="card-button">
+              Create free AI video <span className="arrow">→</span>
+            </Link>
+            <div className="card-info">
+              <span>No credit card required</span>
+              <div className="rating">
+                <span className="rating-icon">★</span>
+                Rated 4.7/5 on G2
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="stats-section">
+        <div className="stats-header">
+          <h2>You don't have to choose between cost, time, and quality</h2>
+        </div>
+
+        <div className="stats-container">
+          <div className="stat-card">
+            <div className="stat-logo">
               <FaMicrophone />
             </div>
-            <h3>Voice-First Interaction</h3>
-            <p>
-              Communicate naturally using just your voice, no typing needed.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <FaRobot />
+            <div className="stat-value">
+              <span className="stat-arrow down">↓</span>$10K
             </div>
-            <h3>Advanced AI Responses</h3>
-            <p>
-              Powered by state-of-the-art language models for intelligent
-              conversations.
+            <div className="stat-label">PER VIDEO</div>
+            <p className="stat-description">
+              Our AI voice technology reduced video production costs by $10,000
+              per training video compared to traditional recording methods.
             </p>
+            <Link to="/case-study" className="stat-link">
+              Read case study <span className="arrow">→</span>
+            </Link>
           </div>
-          <div className="feature-card">
-            <div className="feature-icon">
+
+          <div className="stat-card">
+            <div className="stat-logo">
               <FaBolt />
             </div>
-            <h3>Lightning Fast</h3>
-            <p>
-              Get responses in seconds with our optimized processing pipeline.
-            </p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-icon">
-              <FaGlobe />
+            <div className="stat-value">
+              <span className="stat-arrow up">↑</span>90%
             </div>
-            <h3>Natural Voice Output</h3>
-            <p>Hear responses in a natural-sounding voice that feels human.</p>
+            <div className="stat-label">TIME SAVINGS</div>
+            <p className="stat-description">
+              Cut 90% off video generation time – from days to hours, compared
+              to traditional video creation methods.
+            </p>
+            <Link to="/case-study" className="stat-link">
+              Read case study <span className="arrow">→</span>
+            </Link>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-logo">
+              <FaRobot />
+            </div>
+            <div className="stat-value">
+              <span className="stat-arrow up">↑</span>30%
+            </div>
+            <div className="stat-label">ENGAGEMENT INCREASE</div>
+            <p className="stat-description">
+              Experienced over 30% increase in engagement with AI-powered voice
+              content compared to text-based learning modules.
+            </p>
+            <Link to="/case-study" className="stat-link">
+              Read case study <span className="arrow">→</span>
+            </Link>
           </div>
         </div>
       </section>
-
-      <section id="how-it-works" className="how-it-works">
-        <h2>How It Works</h2>
-        <div className="steps">
-          <div className="step">
-            <div className="step-number">1</div>
-            <h3>Speak Your Question</h3>
-            <p>Press the microphone button and speak naturally.</p>
-          </div>
-          <div className="step">
-            <div className="step-number">2</div>
-            <h3>AI Processing</h3>
-            <p>Your voice is converted to text and processed by our AI.</p>
-          </div>
-          <div className="step">
-            <div className="step-number">3</div>
-            <h3>Listen to Response</h3>
-            <p>Hear the AI's response in a natural-sounding voice.</p>
-          </div>
-        </div>
-        <div className="cta-container">
-          <Link to="/dashboard" className="cta-button">
-            Try It Yourself
-          </Link>
-        </div>
-      </section>
-
-      <section id="about" className="about-section">
-        <h2>About Voice Assistant AI</h2>
-        <p>
-          Our voice assistant uses cutting-edge technology to create a seamless
-          voice-first experience. Powered by Deepgram for speech recognition,
-          Groq for AI processing, and ElevenLabs for natural voice synthesis, we
-          deliver a truly conversational AI experience.
-        </p>
-      </section>
-
-      <footer>
-        <div className="footer-content">
-          <div className="footer-logo">
-            <FaRobot className="logo-icon" />
-            <span>VoiceAI</span>
-          </div>
-          <div className="footer-links">
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#about">About</a>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>
-            &copy; {new Date().getFullYear()} Voice Assistant AI. All rights
-            reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
