@@ -325,31 +325,58 @@ function App() {
             </div>
           </div>
 
-          <div className="platform-graph">
-            <div className="graph-header">
-              <h3>Coverage Over Time</h3>
-              <span className="coverage-percentage">89%</span>
-            </div>
-            <div className="graph-content">
-              {/* Graph line visualization would go here */}
-            </div>
-            <div className="graph-runs">
-              <span className="run-label">Run #1</span>
-              <span className="run-label">Run #2</span>
-              <span className="run-label">Run #3</span>
-              <span className="run-label">Run #4</span>
-              <span className="run-label">Run #5</span>
-              <span className="run-label">Run #6</span>
-            </div>
-            <div className="graph-bars">
-              <div className="bar-group">
-                <div className="bar-value">368</div>
+          <div className="platform-graphs">
+            {/* First Graph */}
+            <div className="platform-graph">
+              <div className="graph-header">
+                <h3>Coverage Over Time</h3>
+                <span className="coverage-percentage">89%</span>
               </div>
-              <div className="bar-group">
-                <div className="bar-value">322</div>
+              <div className="graph-content">
+                {/* Graph line visualization would go here */}
               </div>
-              <div className="bar-group">
-                <div className="bar-value">46</div>
+              <div className="graph-runs">
+                <span className="run-label">Run #1</span>
+                <span className="run-label">Run #2</span>
+                <span className="run-label">Run #3</span>
+              </div>
+              <div className="graph-bars">
+                <div className="bar-group">
+                  <div className="bar-value">368</div>
+                </div>
+                <div className="bar-group">
+                  <div className="bar-value">322</div>
+                </div>
+                <div className="bar-group">
+                  <div className="bar-value">46</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Second Graph */}
+            <div className="platform-graph">
+              <div className="graph-header">
+                <h3>Test Efficiency</h3>
+                <span className="coverage-percentage">76%</span>
+              </div>
+              <div className="graph-content">
+                {/* Graph line visualization would go here */}
+              </div>
+              <div className="graph-runs">
+                <span className="run-label">Pass</span>
+                <span className="run-label">Fail</span>
+                <span className="run-label">Skip</span>
+              </div>
+              <div className="graph-bars">
+                <div className="bar-group">
+                  <div className="bar-value">245</div>
+                </div>
+                <div className="bar-group">
+                  <div className="bar-value">42</div>
+                </div>
+                <div className="bar-group">
+                  <div className="bar-value">18</div>
+                </div>
               </div>
             </div>
           </div>

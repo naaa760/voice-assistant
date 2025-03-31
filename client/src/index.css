@@ -1614,67 +1614,71 @@ footer {
   overflow: hidden;
 }
 
-/* Remove the dark overlay completely */
-.test-platform-section::before {
-  display: none; /* Remove the overlay */
-}
-
 /* Ensure content is visible on background */
 .platform-container {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-/* Add text shadow for better readability */
+/* Change text color to black */
 .platform-content h2 {
-  color: #ffffff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  color: #000000;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+  font-size: 2.4rem;
 }
 
 .platform-highlight {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
   border-left: 4px solid #4285f4;
+  padding: 1.5rem;
+  border-radius: 0 8px 8px 0;
 }
 
 .platform-highlight p {
-  color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  font-weight: 500;
 }
 
 .feature-text h3 {
-  color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  font-weight: 600;
 }
 
 .feature-text p {
-  color: #e2e8f0;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  color: #333333;
 }
 
-.feature-icon {
-  color: #4285f4;
+/* Make graphs smaller and create two of them */
+.platform-graphs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1rem;
 }
 
-/* Graph Styles to match design */
 .platform-graph {
-  background: #0b1120; /* Dark navy background */
+  background: #0f172a;
   border-radius: 16px;
   padding: 1.5rem;
   color: white;
   width: 100%;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .graph-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .graph-header h3 {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
   color: #e2e8f0;
   margin: 0;
@@ -1683,22 +1687,27 @@ footer {
 .coverage-percentage {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #4ade80; /* Green color */
+  color: #4ade80;
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
 
 .coverage-percentage::before {
-  content: "↗"; /* Up arrow */
+  content: "↗";
   font-size: 1rem;
 }
 
 /* Graph line chart area */
 .graph-content {
   position: relative;
-  padding: 1rem 0;
+  height: 80px;
   margin-bottom: 2rem;
+  background: linear-gradient(
+    180deg,
+    rgba(74, 222, 128, 0.05) 0%,
+    transparent 100%
+  );
 }
 
 .graph-content::before {
@@ -1707,20 +1716,19 @@ footer {
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
-  background: linear-gradient(
-    180deg,
-    rgba(74, 222, 128, 0.1) 0%,
-    transparent 100%
-  );
-  border-top: 1px solid rgba(74, 222, 128, 0.2);
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 80' preserveAspectRatio='none'%3E%3Cpath d='M0,70 C100,70 150,20 200,40 C250,60 300,60 350,50 C400,40 450,10 600,10' stroke='%234ade80' stroke-width='2' fill='none'/%3E%3C/svg%3E")
+    no-repeat;
+  background-size: 100% 100%;
 }
 
 /* Run labels */
 .graph-runs {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(100, 116, 139, 0.2);
 }
 
 .run-label {
@@ -1739,27 +1747,26 @@ footer {
 .bar-value {
   font-size: 2.5rem;
   font-weight: 500;
-  color: #e2e8f0;
+  color: #94a3b8;
   margin-bottom: 0.25rem;
   font-family: "SF Mono", "Monaco", monospace;
 }
 
-.bar-label {
-  display: none; /* Hide labels since they're shown above */
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .platform-graph {
-    padding: 1.25rem;
-    max-width: 100%;
+  .platform-graphs {
+    grid-template-columns: 1fr;
   }
 
-  .graph-bars {
-    gap: 1rem;
+  .platform-graph {
+    padding: 1rem;
   }
 
   .bar-value {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+  }
+
+  .platform-content h2 {
+    font-size: 2rem;
   }
 }
