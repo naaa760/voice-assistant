@@ -84,7 +84,7 @@ function App() {
       <header className="hero">
         <div className="hero-content">
           <h1>
-            Turn <span className="text-dark">text to voice,</span>
+            Turn <span className="text-dark">voice to text,</span>
             <br />
             in <span className="text-blue">seconds.</span>
           </h1>
