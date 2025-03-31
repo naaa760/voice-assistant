@@ -30,6 +30,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // Initialize Deepgram
+console.log("api :", process.env.DEEPGRAM_API_KEY);
 const deepgram = new Deepgram(process.env.DEEPGRAM_API_KEY);
 
 // API Routes
